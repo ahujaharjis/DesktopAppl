@@ -7,6 +7,7 @@
 package MyFrames;
 import java.sql.*;
 import java.util.ArrayList;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -26,7 +27,20 @@ public class UpdateStock extends javax.swing.JInternalFrame {
         this.setLocation(200,90);
         
     }
-
+    public static boolean confirm() {
+    JDialog.setDefaultLookAndFeelDecorated(true);
+    int response = JOptionPane.showConfirmDialog(null, "Do you want to continue?", "Confirm",
+        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+    if (response == JOptionPane.NO_OPTION) {
+      return false;
+    } else if (response == JOptionPane.YES_OPTION) {
+      return true;
+    } else if (response == JOptionPane.CLOSED_OPTION) {
+      return false;
+    }
+    else
+        return false;
+  }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -372,12 +386,13 @@ int i=jTable2.getSelectedRow();        // TODO add your handling code here:
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         
-
-                 
-                                  
+Boolean result = confirm();
+        if(result){
         String query;
         query ="DELETE FROM `stock` WHERE `id`="+jTextField1.getText();
     executeSQlQuery(query,"Delete");   // TODO add your handling code here:*/
+    }                                  
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
   public void executeSQlQuery(String query, String message)

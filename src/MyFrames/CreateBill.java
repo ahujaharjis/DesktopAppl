@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.JDialog;
 /**
  *
  * @author SAMEER
@@ -66,7 +67,20 @@ String c_name;
         
         
     }
-
+    public static boolean confirm() {
+    JDialog.setDefaultLookAndFeelDecorated(true);
+    int response = JOptionPane.showConfirmDialog(null, "Do you want to continue?", "Confirm",
+        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+    if (response == JOptionPane.NO_OPTION) {
+      return false;
+    } else if (response == JOptionPane.YES_OPTION) {
+      return true;
+    } else if (response == JOptionPane.CLOSED_OPTION) {
+      return false;
+    }
+    else
+        return false;
+  }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -706,7 +720,9 @@ float fsum1 = Float.valueOf(decimalFormat.format(sum));
           
       }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-            DefaultTableModel model =(DefaultTableModel) jTable1.getModel();
+        boolean result = confirm();
+        if(result){
+        DefaultTableModel model =(DefaultTableModel) jTable1.getModel();
             model.removeRow(jTable1.getSelectedRow());
             // Update query;
                  String sql1="UPDATE `stock` SET `available`=`available` + '"+jTextField5.getText()+"' WHERE `pname`='"+jTextField3.getText()+"'";
@@ -725,7 +741,7 @@ float fsum1 = Float.valueOf(decimalFormat.format(sum));
          JOptionPane.showMessageDialog(null,e);
      }
     }//GEN-LAST:event_jButton2ActionPerformed
-
+    }
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         
         billupdate();

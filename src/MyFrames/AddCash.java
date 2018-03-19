@@ -7,6 +7,7 @@
 package MyFrames;
 import java.sql.*;
 import java.util.ArrayList;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -28,7 +29,20 @@ public class AddCash extends javax.swing.JInternalFrame {
         this.setLocation(140,60);
         
     }
-
+    public static boolean confirm() {
+    JDialog.setDefaultLookAndFeelDecorated(true);
+    int response = JOptionPane.showConfirmDialog(null, "Do you want to continue?", "Confirm",
+        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+    if (response == JOptionPane.NO_OPTION) {
+      return false;
+    } else if (response == JOptionPane.YES_OPTION) {
+      return true;
+    } else if (response == JOptionPane.CLOSED_OPTION) {
+      return false;
+    }
+    else
+        return false;
+  }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -296,8 +310,11 @@ public class AddCash extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_updateActionPerformed
 
     private void delActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delActionPerformed
-      String query="DELETE FROM `customer` WHERE `cust_id`="+jTextField1.getText();
+      Boolean result = confirm();
+        if(result){
+        String query="DELETE FROM `cash` WHERE `id`="+jTextField1.getText();
       executeSQlQuery(query,"Delete");
+    }       
     }//GEN-LAST:event_delActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked

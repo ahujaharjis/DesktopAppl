@@ -23,6 +23,7 @@ public class CashLogin extends javax.swing.JFrame {
     public CashLogin() {
         initComponents();
         this.setLocation(300,100);
+        this.setResizable(false);
     }
     public void close(){
         WindowEvent winClosingEvent=new WindowEvent(this,WindowEvent.WINDOW_CLOSING);

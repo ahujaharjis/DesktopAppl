@@ -20,6 +20,7 @@ public class Quickbill extends javax.swing.JFrame {
     public Quickbill() {
         initComponents();
         this.setLocation(300,100);
+        this.setResizable(false);
     }
     public void close(){
         WindowEvent winClosingEvent=new WindowEvent(this,WindowEvent.WINDOW_CLOSING);

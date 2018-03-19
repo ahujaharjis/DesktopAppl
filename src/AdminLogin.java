@@ -24,6 +24,7 @@ public class AdminLogin extends javax.swing.JFrame {
     public AdminLogin() {
         initComponents();
         this.setLocation(400,90);
+        this.setResizable(false);
     }
     public void close(){
         WindowEvent winClosingEvent=new WindowEvent(this,WindowEvent.WINDOW_CLOSING);
